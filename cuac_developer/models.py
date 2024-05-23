@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from cuac_core.models import Company
-from django.utils.timezone import now
+from django.utils import timezone
 
 User = get_user_model()
 
@@ -9,7 +9,7 @@ User = get_user_model()
 class Batch(models.Model):
     time = models.IntegerField(default=0)
     hours_elapsed = models.IntegerField(default=0)
-    created = models.DateTimeField(blank=True, null=True, default=now)
+    created = models.DateTimeField(blank=True, null=True, default=timezone.now)
     expiration = models.DateTimeField(blank=True, null=True)
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, blank=True, null=True)
     active = models.BooleanField()
