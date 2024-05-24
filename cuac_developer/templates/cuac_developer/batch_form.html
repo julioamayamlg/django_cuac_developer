@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block extrastyles %}
+{{ form.media }}
+{% endblock %}
+
+{% block extratitle %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<section class="wrapper wrapper-content">
+    <div class="row mt">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>
+                        {{ title|capfirst }}
+                        {% if subtitle %}
+                        <small>{{ subtitle }}</small>
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    {% if description %}
+                    <div class="description">
+                        {{ description|safe }}
+                    </div>
+                    {% endif %}
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
