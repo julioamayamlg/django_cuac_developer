@@ -13,7 +13,7 @@ urlpatterns = [
     path('batch/<int:pk>/delete/', views.BatchDelete.as_view(), name='batch-delete'),
 
 
-    path('task/', views.TaskList.as_view(), name='task-list'),
+    path('tasks/', views.TaskList.as_view(), name='task-list'),
     path('task', views.TaskCreate.as_view(), name='task-create'),
     path('task/<int:pk>/', views.TaskDetail.as_view(), name='task-detail'),
     path('task/<int:pk>/update/', views.TaskUpdate.as_view(), name='task-update'),
