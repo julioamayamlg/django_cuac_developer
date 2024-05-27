@@ -81,7 +81,7 @@ class TaskListAsJSON(LoginRequiredMixin, DatatableListView):
             'title': obj.title,
             'description': obj.description,
             'time': obj.time,
-            'batch': obj.batch.pk,
+            'batch': obj.batch.title,
             'assignee': obj.assignee.pk,
             'assignee_name': obj.assignee.first_name,
         }
