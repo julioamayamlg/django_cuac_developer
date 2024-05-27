@@ -46,10 +46,10 @@
 
     const batchColumns = [
         { data: 'name', title: 'Nombre', className: 'editable', name: 'name' },
-        { data: 'time', title: 'Tiempo', className: 'editable', name: 'time' },
-        { data: 'hours_elapsed', title: 'Horas consumidas', className: 'editable', name: 'hours_elapsed' },
+        { data: 'time', title: 'Horas', className: 'editable', name: 'time' },
+        { data: 'hours_elapsed', title: 'Horas agotadas', className: 'editable', name: 'hours_elapsed' },
         { data: 'created', title: 'Creado', className: 'editable', name: 'created' },
-        { data: 'expiration', title: 'Acaba', className: 'editable', name: 'expiration' },
+        { data: 'expiration', title: 'Caducidad', className: 'editable', name: 'expiration' },
         { data: 'company', title: 'Cliente', className: 'company' },
         { data: 'active', title: 'Activo', className: 'active' },
         { data: 'invoiced', title: 'Facturado', className: 'invoiced' },
@@ -63,15 +63,15 @@
             },
             table: '#batch-list',
             fields: [
-                { label: 'Name', name: 'name' },
-                { label: 'Time', name: 'time' },
-                { label: 'Hours elapsed', name: 'hours_elapsed' },
-                { label: 'Created', name: 'created' },
-                { label: 'Expiration', name: 'expiration' },
-                { label: 'Company', name: 'company' },
-                { label: 'Active', name: 'active' },
-                { label: 'Invoiced', name: 'invoiced' },
-                { label: 'Charged', name: 'charged' }
+                { label: 'Nombre', name: 'name' },
+                { label: 'Horas', name: 'time' },
+                { label: 'Horas agotadas', name: 'hours_elapsed' },
+                { label: 'Creado', name: 'created' },
+                { label: 'Caducidad', name: 'expiration' },
+                { label: 'Cliente', name: 'company' },
+                { label: 'Activo', name: 'active' },
+                { label: 'Facturado', name: 'invoiced' },
+                { label: 'Cobrado', name: 'charged' }
             ]
         })
 

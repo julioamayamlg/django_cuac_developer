@@ -1,6 +1,5 @@
 from django import forms
 from cuac_core.wrapped_views import GenericCrispyForm
-from django.utils.translation import gettext_lazy as _
 from . import models
 
 
@@ -10,15 +9,15 @@ class BatchForm(GenericCrispyForm, forms.ModelForm):
         model = models.Batch
         fields = '__all__'
         labels ={
-            'name': _('Name'),
-            'time': _('Hours'),
-            'hours_elapsed': _('Hours elapsed'),
-            'created': _('Created'),
-            'expiration': _('Expires'),
-            'company': _('Client'),
-            'active': _('Active'),
-            'invoiced': _('Invoiced'),
-            'charged': _('Charged'),
+            'name': 'Nombre',
+            'time': 'Horas',
+            'hours_elapsed': 'Horas agotadas',
+            'created': 'Creado',
+            'expiration': 'Caducidad',
+            'company': 'Cliente',
+            'active': 'Activo',
+            'invoiced': 'Facturado',
+            'charged': 'Cobrado',
                 }
 
 
@@ -28,9 +27,9 @@ class TaskForm(GenericCrispyForm, forms.ModelForm):
         model = models.Task
         fields = '__all__'
         labels ={
-            'title': _('Title'),
-            'description': _('Description'),
-            'time': _('Hours'),
-            'batch': _('Batch'),
-            'assignee': _('Assignee'),
+            'title': 'Tarea',
+            'description': 'Descripción',
+            'time': 'Horas',
+            'batch': 'Lote',
+            'assignee': 'Asignado',
                 }
