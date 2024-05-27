@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block content %}
+<div class="ibox">
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="batch-list">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrastyles %}
+<link href="{% static 'assets/dataTables/datatables.css' %}" rel="stylesheet">
+<link href="{% static 'assets/select2/css/select2.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extraheaderjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="{% static 'assets/select2/js/select2.full.min.js' %}"></script>
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript" src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script type="text/javascript" src="{% static 'assets/dataTables/datatables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/plugins/dataTables/editor.ckeditor5.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/plugins/chartJs/Chart.min.js' %}"></script>
+<script>
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            let csrf_token = getCookie('csrftoken')
+            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+        }
+    });
+
+    const batchColumns = [
+        { data: 'time', title: 'Tiempo', className: 'editable', name: 'time' },
+        { data: 'hours_elapsed', title: 'Horas consumidas', className: 'editable', name: 'hours_elapsed' },
+        { data: 'created', title: 'Creado', className: 'editable', name: 'created' },
+        { data: 'expiration', title: 'Acaba', className: 'editable', name: 'expiration' },
+        { data: 'company', title: 'Cliente', className: 'company' },
+        { data: 'active', title: 'Activo', className: 'active' },
+        { data: 'invoiced', title: 'Facturado', className: 'invoiced' },
+        { data: 'charged', title: 'Cobrado', className: 'charged' },
+        { data: 'actions', title: 'Acciones', className: 'text-end' }
+    ]
+
+    $(document).ready(function() {
+        let editor = new $.fn.dataTable.Editor({
+            ajax: {
+                url: '{% url "cuac_developer:batch-editor" %}'
+            },
+            table: '#batch-list',
+            fields: [
+                { label: 'Title', name: 'title' },
+                { label: 'Time', name: 'time' },
+                { label: 'Hours elapsed', name: 'hours_elapsed' },
+                { label: 'Created', name: 'created' },
+                { label: 'Expiration', name: 'expiration' },
+                { label: 'Company', name: 'company' },
+                { label: 'Active', name: 'active' },
+                { label: 'Invoiced', name: 'invoiced' },
+                { label: 'Charged', name: 'charged' }
+            ]
+        })
+
+        let table = $( '#batch-list' ).DataTable({
+            dom: 'Bftpr',
+            ajax: "{% url 'cuac_developer:batch-list-asjson' %}",
+            serverSide: true,
+            responsive: true,
+            language: { url: '{% static "assets/dataTables/es-ES.json" %}' },
+            order: [[1, 'asc']],
+            select: {
+                style: 'multiple',
+                blurable: true,
+            },
+            columns: batchColumns,
+            buttons: [
+                { text: "<i class='bi bi-plus'></i> Nuevo",
+                  className: "btn btn-primary",
+                  action: function (e, dt, node, config) {
+                    location.href="{% url 'cuac_developer:batch-create' %}";
+                  }
+                },
+                { extend: "edit",
+                  text: "<i class='bi bi-pen'></i> Editar",
+                  editor: editor }
+            ]
+        })
+
+        $( '#batch-list tr td' ).on('click', '.editable', function(e) {
+            editor.bubble( this )
+        })
+
+        $('#category').on('change', function() {
+            var val = $( this ).val()
+            console.log(`category change to ${val}`)
+            table
+                .columns( 9 )
+                .search( val )
+                .draw()
+            console.log('done')
+        });
+    })
+</script>
+
+{% endblock %}
