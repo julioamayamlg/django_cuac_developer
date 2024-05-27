@@ -81,7 +81,7 @@ class TaskListAsJSON(LoginRequiredMixin, DatatableListView):
             'title': obj.title,
             'description': obj.description,
             'time': obj.time,
-            'batch': obj.batch.title,
+            'batch': obj.batch.name,
             'assignee': obj.assignee.pk,
             'assignee_name': obj.assignee.first_name,
         }
@@ -107,7 +107,7 @@ class BatchListAsJSON(LoginRequiredMixin, DatatableListView):
     def object_wrapper(self, obj):
         row = {
             'DT_RowId': obj.pk,
-            'title': obj.title,
+            'name': obj.name,
             'time': obj.time,
             'hours_elapsed': obj.hours_elapsed,
             'created': obj.created,

@@ -7,7 +7,7 @@ User = get_user_model()
 
 
 class Batch(models.Model):
-    title = models.CharField(max_length=150)
+    name = models.CharField(max_length=150)
     time = models.IntegerField(default=0)
     hours_elapsed = models.IntegerField(default=0)
     created = models.DateTimeField(blank=True, null=True, default=timezone.now)
