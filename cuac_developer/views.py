@@ -36,6 +36,9 @@ class BatchCreate(LoginRequiredMixin, generic.CreateView):
     model = models.Batch
     form_class = forms.BatchForm
 
+    def get_success_url(self):
+        return reverse_lazy('cuac_developer:batch-list')
+
 
 class BatchUpdate(LoginRequiredMixin, generic.UpdateView):
     model = models.Batch
@@ -82,6 +85,8 @@ class TaskCreate(LoginRequiredMixin, generic.CreateView):
     model = models.Task
     form_class = forms.TaskForm
 
+    def get_success_url(self):
+        return reverse_lazy('cuac_developer:task-list')
 
 class TaskUpdate(LoginRequiredMixin, generic.UpdateView):
     model = models.Task
