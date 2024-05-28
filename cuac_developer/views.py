@@ -107,10 +107,6 @@ class TaskListAsJSON(LoginRequiredMixin, DatatableListView):
         return (f"<a href='{reverse_lazy('cuac_developer:task-detail', kwargs={'pk': obj.pk})}' "
                 f"class='btn btn-primary'>"
                 f"<i class='bi bi-eye'></i>"
-                f"</a>"
-                f"<a href='{reverse_lazy('cuac_developer:task-delete', kwargs={'pk': obj.pk})}' "
-                f"class='btn btn-danger'>"
-                f"<i class='bi bi-trash'></i>"
                 f"</a>")
 
     def object_wrapper(self, obj):
@@ -137,10 +133,6 @@ class BatchListAsJSON(LoginRequiredMixin, DatatableListView):
         return (f"<a href='{reverse_lazy('cuac_developer:batch-detail', kwargs={'pk': obj.pk})}' "
                 f"class='btn btn-primary'>"
                 f"<i class='bi bi-eye'></i>"
-                f"</a>"
-                f"<a href='{reverse_lazy('cuac_developer:batch-delete', kwargs={'pk': obj.pk})}' "
-                f"class='btn btn-danger'>"
-                f"<i class='bi bi-trash'></i>"
                 f"</a>")
 
     def object_wrapper(self, obj):
