@@ -54,4 +54,4 @@ class TaskQuerySet(QuerySet, TaskMixin):
 
 class TaskManager(Manager, TaskMixin):
     def get_queryset(self):
-        return BatchQuerySet(self.model, using=self._db)
+        return TaskQuerySet(self.model, using=self._db)
