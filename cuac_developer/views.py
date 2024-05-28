@@ -72,7 +72,7 @@ class TaskDetail(LoginRequiredMixin, generic.DetailView):
             'title': self.object.title,
             'breadcrumb_list': [
                 {'label': 'Tareas',
-                 'url': reverse_lazy('cuac_core:task-list')},
+                 'url': reverse_lazy('cuac_developer:task-list')},
                 {'label': self.object.title}
             ]})
         return context
