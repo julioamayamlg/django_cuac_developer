@@ -49,7 +49,8 @@
         { data: 'description', title: 'Descripción', className: 'editable', name: 'description' },
         { data: 'time', title: 'Horas', className: 'editable', name: 'time' },
         { data: 'batch', title: 'Lote', className: 'editable', name: 'batch' },
-        { data: 'assignee_name', title: 'Asignado', className: 'assignee_name' }
+        { data: 'assignee_name', title: 'Asignado', className: 'assignee_name' },
+        { data: 'actions', title: 'Acciones', className: 'text-end' }
     ]
 
     $(document).ready(function() {
@@ -100,7 +101,7 @@
             var val = $( this ).val()
             console.log(`category change to ${val}`)
             table
-                .columns( 5 )
+                .columns( 6 )
                 .search( val )
                 .draw()
             console.log('done')
