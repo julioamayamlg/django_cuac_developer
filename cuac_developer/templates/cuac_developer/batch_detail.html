@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-content">
+                <div class="float-end">
+                    <a href="{% url 'cuac_developer:batch-update' pk=object.pk %}" class="btn btn-primary">
+                        {% trans 'Update' %}
+                    </a>
+                    <a href="{% url 'cuac_developer:batch-delete' pk=object.pk %}" class="btn btn-danger">
+                        {% trans 'Delete' %}
+                    </a>
+                </div>
+
+                <div class="article-title">
+                    <h1>{{ object.name }} {{ object.time }}h</h1>
+                    <div class="dropdown">
+                        <button class="btn btn-circle btn-primary btn-lg mt-5 dropdown-toggle" type="button"
+                                id="company-actions" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="company-actions">
+                            <li><a class="dropdown-item" href="{% url 'cuac_developer:task-create' %}">
+                                {% trans 'Add task' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

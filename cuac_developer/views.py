@@ -1,6 +1,7 @@
 from django.views import generic
 from braces.views import LoginRequiredMixin, SuperuserRequiredMixin, PermissionRequiredMixin, JSONResponseMixin
 from cuac_core.mixins import DatatableListView, DatatableEditor
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 from . import models, forms
 
@@ -12,6 +13,16 @@ class BatchList(LoginRequiredMixin, generic.ListView):
 class BatchDetail(LoginRequiredMixin, generic.DetailView):
     model = models.Batch
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'title': self.object.name,
+            'breadcrumb_list': [
+                {'label': 'Lotes',
+                 'url': reverse_lazy('cuac_core:batch-list')},
+                {'label': self.object.name}
+            ]})
+        return context
 
 class BatchCreate(LoginRequiredMixin, generic.CreateView):
     model = models.Batch
