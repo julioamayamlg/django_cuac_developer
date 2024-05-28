@@ -27,7 +27,7 @@ class BatchDetail(LoginRequiredMixin, generic.DetailView):
             'title': self.object.name,
             'breadcrumb_list': [
                 {'label': 'Lotes',
-                 'url': reverse_lazy('cuac_core:batch-list')},
+                 'url': reverse_lazy('cuac_developer:batch-list')},
                 {'label': self.object.name}
             ]})
         return context
@@ -59,7 +59,7 @@ class TaskList(LoginRequiredMixin, generic.ListView):
         context.update({
             'breadcrumb_list': [
                 {'label': 'Tareas',
-                 'url': reverse_lazy('cuac_core:task-list')}
+                 'url': reverse_lazy('cuac_developer:task-list')}
             ]})
         return context
 
