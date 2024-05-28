@@ -50,6 +50,17 @@ class TaskList(LoginRequiredMixin, generic.ListView):
 class TaskDetail(LoginRequiredMixin, generic.DetailView):
     model = models.Task
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'title': self.object.title,
+            'breadcrumb_list': [
+                {'label': 'Tareas',
+                 'url': reverse_lazy('cuac_core:task-list')},
+                {'label': self.object.title}
+            ]})
+        return context
+
 
 class TaskCreate(LoginRequiredMixin, generic.CreateView):
     model = models.Task

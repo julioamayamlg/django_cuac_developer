@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+<div class="col-lg-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Lotes</h5>
+            </div>
+            <div class="ibox-content">
+                <ul class="list-unstyled">
+                    {% for batch in object.batch.all %}
+                    <li class="d-flex flex-column">
+                        <h5>{{ batch.title }}</h5>
+                        <div class="d-flex justify-content-between pb-2 border-bottom">
+                            <span class="badge badge-primary">
+                                {{ batch.time }} h
+                            </span>
+                            <span class="badge badge-secondary">
+                                <i class="bi bi-calendar"></i> {{ batch.created }}
+                            </span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="ibox">
+            <div class="ibox-content">
+                <div class="float-end">
+                    <a href="{% url 'cuac_developer:task-update' pk=object.pk %}" class="btn btn-primary">
+                        {% trans 'Update' %}
+                    </a>
+                    <a href="{% url 'cuac_developer:task-delete' pk=object.pk %}" class="btn btn-danger">
+                        {% trans 'Delete' %}
+                    </a>
+                </div>
+
+                <div class="article-title">
+                    <h1>{{ object.title }} {{ object.time }}h</h1>
+                    <div class="dropdown">
+                        <button class="btn btn-circle btn-primary btn-lg mt-5 dropdown-toggle" type="button"
+                                id="company-actions" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="company-actions">
+                            <li><a class="dropdown-item" href="{% url 'cuac_developer:task-create' %}">
+                                {% trans 'Add task' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
