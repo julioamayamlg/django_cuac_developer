@@ -88,11 +88,11 @@ class TaskListAsJSON(LoginRequiredMixin, DatatableListView):
 
     @staticmethod
     def get_actions(obj):
-        return (f"<a href='{reverse_lazy('cuac_core:task-detail', kwargs={'pk': obj.pk})}' "
+        return (f"<a href='{reverse_lazy('cuac_developer:task-detail', kwargs={'pk': obj.pk})}' "
                 f"class='btn btn-primary'>"
                 f"<i class='bi bi-eye'></i>"
                 f"</a>"
-                f"<a href='{reverse_lazy('cuac_core:task-delete', kwargs={'pk': obj.pk})}' "
+                f"<a href='{reverse_lazy('cuac_developer:task-delete', kwargs={'pk': obj.pk})}' "
                 f"class='btn btn-danger'>"
                 f"<i class='bi bi-trash'></i>"
                 f"</a>")
@@ -106,6 +106,7 @@ class TaskListAsJSON(LoginRequiredMixin, DatatableListView):
             'batch': obj.batch.name,
             'assignee': obj.assignee.pk,
             'assignee_name': obj.assignee.first_name,
+            'actions': f'<div class="btn-group">{self.get_actions(obj)}</div>'
         }
         return row
 
@@ -117,11 +118,11 @@ class BatchListAsJSON(LoginRequiredMixin, DatatableListView):
 
     @staticmethod
     def get_actions(obj):
-        return (f"<a href='{reverse_lazy('cuac_core:batch-detail', kwargs={'pk': obj.pk})}' "
+        return (f"<a href='{reverse_lazy('cuac_developer:batch-detail', kwargs={'pk': obj.pk})}' "
                 f"class='btn btn-primary'>"
                 f"<i class='bi bi-eye'></i>"
                 f"</a>"
-                f"<a href='{reverse_lazy('cuac_core:batch-delete', kwargs={'pk': obj.pk})}' "
+                f"<a href='{reverse_lazy('cuac_developer:batch-delete', kwargs={'pk': obj.pk})}' "
                 f"class='btn btn-danger'>"
                 f"<i class='bi bi-trash'></i>"
                 f"</a>")
@@ -139,5 +140,6 @@ class BatchListAsJSON(LoginRequiredMixin, DatatableListView):
             'active': obj.active,
             'invoiced': obj.invoiced,
             'charged': obj.charged,
+            'actions': f'<div class="btn-group">{self.get_actions(obj)}</div>'
         }
         return row
