@@ -9,6 +9,14 @@ from . import models, forms
 class BatchList(LoginRequiredMixin, generic.ListView):
     model = models.Batch
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'breadcrumb_list': [
+                {'label': 'Lotes',
+                 'url': reverse_lazy('cuac_core:batch-list')}
+            ]})
+        return context
 
 class BatchDetail(LoginRequiredMixin, generic.DetailView):
     model = models.Batch
@@ -46,6 +54,14 @@ class BatchEditor(LoginRequiredMixin,
 class TaskList(LoginRequiredMixin, generic.ListView):
     model = models.Task
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'breadcrumb_list': [
+                {'label': 'Tareas',
+                 'url': reverse_lazy('cuac_core:task-list')}
+            ]})
+        return context
 
 class TaskDetail(LoginRequiredMixin, generic.DetailView):
     model = models.Task
