@@ -1,5 +1,6 @@
 from django import forms
 from cuac_core.wrapped_views import GenericCrispyForm
+from django.contrib.admin import widgets
 from . import models
 
 
@@ -19,6 +20,10 @@ class BatchForm(GenericCrispyForm, forms.ModelForm):
             'invoiced': 'Facturado',
             'charged': 'Cobrado',
                 }
+        widgets ={
+            'created' : widgets.AdminSplitDateTime(),
+            'expiration' : widgets.AdminSplitDateTime()
+        }
 
 
 class TaskForm(GenericCrispyForm, forms.ModelForm):
