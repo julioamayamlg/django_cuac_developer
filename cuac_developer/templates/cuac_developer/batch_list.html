@@ -51,9 +51,7 @@
         { data: 'created', title: 'Creado', className: 'editable', name: 'created' },
         { data: 'expiration', title: 'Caducidad', className: 'editable', name: 'expiration' },
         { data: 'company', title: 'Cliente', className: 'company' },
-        { data: 'active', title: 'Activo', className: 'active' },
-        { data: 'invoiced', title: 'Facturado', className: 'invoiced' },
-        { data: 'charged', title: 'Cobrado', className: 'charged' },
+        { data: 'status', title: 'Estado', className: 'status' },
         { data: 'actions', title: 'Acciones', className: 'text-end' }
     ]
 
@@ -70,9 +68,7 @@
                 { label: 'Creado', name: 'created' },
                 { label: 'Caducidad', name: 'expiration' },
                 { label: 'Cliente', name: 'company' },
-                { label: 'Activo', name: 'active' },
-                { label: 'Facturado', name: 'invoiced' },
-                { label: 'Cobrado', name: 'charged' }
+                { label: 'Estado', name: 'status' }
             ]
         })
 
@@ -113,7 +109,7 @@
             var val = $( this ).val()
             console.log(`category change to ${val}`)
             table
-                .columns( 10 )
+                .columns( 7 )
                 .search( val )
                 .draw()
             console.log('done')

@@ -13,7 +13,7 @@ class Batch(models.Model):
     name = models.CharField(max_length=150)
     time = models.IntegerField(default=0)
     hours_elapsed = models.IntegerField(default=0)
-    created = models.DateField(blank=True, null=True, default=date.today().strftime("%d/%m/%Y"))
+    created = models.DateField(blank=True, null=True, default=date.today().strftime("%Y-%m-%d"))
     expiration = models.DateField(blank=True, null=True)
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, blank=True, null=True)
 

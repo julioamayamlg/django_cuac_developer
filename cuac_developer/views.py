@@ -174,9 +174,7 @@ class BatchListAsJSON(LoginRequiredMixin, DatatableListView):
             'expiration': obj.expiration,
             'company_pk': obj.company.pk,
             'company': obj.company.name,
-            'active': obj.active,
-            'invoiced': obj.invoiced,
-            'charged': obj.charged,
+            'status': obj.status,
             'actions': f'<div class="btn-group">{self.get_actions(obj)}</div>'
         }
         return row
