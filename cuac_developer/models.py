@@ -19,6 +19,10 @@ class Batch(models.Model):
     charged = models.BooleanField()
     objects = managers.BatchManager()
 
+    def __str__(self):
+        return f'{self.name}'
+
+
 class Task(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
@@ -28,3 +32,6 @@ class Task(models.Model):
                                  on_delete=models.SET_NULL,
                                  blank=True, null=True)
     objects = managers.TaskManager()
+
+    def __str__(self):
+        return f'{self.title}'
