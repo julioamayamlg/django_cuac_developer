@@ -3,31 +3,8 @@
 
 {% block content %}
 <div class="row justify-content-md-center">
-<div class="col-lg-4">
-        <div class="ibox">
-            <div class="ibox-title">
-                <h5>Tareas</h5>
-            </div>
-            <div class="ibox-content">
-                <ul class="list-unstyled">
-                    {% for task in object.task.all %}
-                    <li class="d-flex flex-column">
-                        <h5>{{ task.title }}</h5>
-                        <div class="d-flex justify-content-between pb-2 border-bottom">
-                            <span class="badge badge-primary">
-                                {{ task.time }} €
-                            </span>
-                            <span class="badge badge-secondary">
-                                <i class="bi bi-calendar"></i> {{ task.assignee }}
-                            </span>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-8">
+
+    <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-content">
                 <div class="float-end">
@@ -40,7 +17,8 @@
                 </div>
 
                 <div class="article-title">
-                    <h1>{{ object.name }} {{ object.time }}h</h1>
+                    <h1>{{ object.name }} - {{ object.time }}h</h1>
+                    <h2>Para {{ object.company }}</h2>
                     <div class="dropdown">
                         <button class="btn btn-circle btn-primary btn-lg mt-5 dropdown-toggle" type="button"
                                 id="company-actions" data-bs-toggle="dropdown" aria-expanded="false">
