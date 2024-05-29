@@ -16,13 +16,11 @@ class BatchForm(GenericCrispyForm, forms.ModelForm):
             'created': 'Creado',
             'expiration': 'Caducidad',
             'company': 'Cliente',
-            'active': 'Activo',
-            'invoiced': 'Facturado',
-            'charged': 'Cobrado',
+            'status': 'Estado',
                 }
         widgets ={
-            'created' : widgets.AdminSplitDateTime(),
-            'expiration' : widgets.AdminSplitDateTime()
+            'created' : forms.SelectDateWidget(),
+            'expiration' : forms.SelectDateWidget()
         }
 
 

@@ -1,32 +1,26 @@
 from django.db import models
-from django_extensions.db.models import TimeStampedModel, TitleDescriptionModel, ActivatorModel
+# from django_extensions.db.models import TimeStampedModel, TitleDescriptionModel, ActivatorModel
 from django.contrib.auth import get_user_model
 from cuac_core.models import Company
-from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
+from datetime import date
 from . import managers
 
 User = get_user_model()
 
 
-class Batch(TitleDescriptionModel, ActivatorModel):
-    #class BatchStatus(models.TextChoices):
-    #    ACTIVE = "active", _("Active")
-    #    BILLED = "billed", _("Billed")
-    #    CHARGED = "charged", _("Charged")
+class Batch(models.Model):
 
     name = models.CharField(max_length=150)
     time = models.IntegerField(default=0)
     hours_elapsed = models.IntegerField(default=0)
-    created = models.DateTimeField(blank=True, null=True, default=timezone.now)
-    expiration = models.DateTimeField(blank=True, null=True)
+    created = models.DateField(blank=True, null=True, default=date.today().strftime("%d/%m/%Y"))
+    expiration = models.DateField(blank=True, null=True)
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, blank=True, null=True)
 
-    active = models.BooleanField()
-    invoiced = models.BooleanField()
-    charged = models.BooleanField()
-
-    #status = models.CharField(choices=BatchStatus, default=BatchStatus.ACTIVE)
+    class BatchStatus(models.TextChoices):
+        BILLED = "billed", "Facturado"
+        CHARGED = "charged", "Cobrado"
+    status = models.CharField(max_length=10, choices=BatchStatus.choices, default=BatchStatus.BILLED)
     objects = managers.BatchManager()
 
     def __str__(self):
