@@ -43,11 +43,23 @@ class BatchCreate(LoginRequiredMixin, generic.CreateView):
 class BatchUpdate(LoginRequiredMixin, generic.UpdateView):
     model = models.Batch
     form_class = forms.BatchForm
-
+    def get_success_url(self):
+        return reverse_lazy('cuac_developer:batch-list')
 
 class BatchDelete(LoginRequiredMixin, generic.DeleteView):
     model = models.Batch
-
+    def get_success_url(self):
+        return reverse_lazy('cuac_developer:batch-list')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'title': 'Eliminar ' + self.object.name,
+            'breadcrumb_list': [
+                {'label': 'Lotes',
+                 'url': reverse_lazy('cuac_developer:batch-list')},
+                {'label': self.object.name}
+            ]})
+        return context
 
 class BatchEditor(LoginRequiredMixin,
                     DatatableEditor):
@@ -91,11 +103,23 @@ class TaskCreate(LoginRequiredMixin, generic.CreateView):
 class TaskUpdate(LoginRequiredMixin, generic.UpdateView):
     model = models.Task
     form_class = forms.TaskForm
-
+    def get_success_url(self):
+        return reverse_lazy('cuac_developer:task-list')
 
 class TaskDelete(LoginRequiredMixin, generic.DeleteView):
     model = models.Task
-
+    def get_success_url(self):
+        return reverse_lazy('cuac_developer:task-list')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'title': 'Eliminar ' + self.object.title,
+            'breadcrumb_list': [
+                {'label': 'Tareas',
+                 'url': reverse_lazy('cuac_developer:task-list')},
+                {'label': self.object.title}
+            ]})
+        return context
 
 class TaskEditor(LoginRequiredMixin,
                     DatatableEditor):

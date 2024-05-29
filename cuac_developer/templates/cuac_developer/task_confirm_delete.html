@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section class="wrapper wrapper-content">
+    <div class="row mt">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>
+                        {{ title|capfirst }}
+                        {% if subtitle %}
+                        <small>{{ subtitle }}</small>
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <h5>{{ confirm_text }}</h5>
+                        <p>
+                            {{ help_text}}
+                        </p>
+                        <input type="hidden"
+                               name="next"
+                               value="{{ next }}" />
+                        <input type="submit"
+                               value="{% trans 'Confirm' %}"
+                               class="btn btn-danger btn-block" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
