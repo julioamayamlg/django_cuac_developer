@@ -101,10 +101,6 @@
                   text: "<i class='bi bi-trash'></i> Borrar",
                   editor: editor}
             ],
-            "columnDefs": [ {
-            "targets": 3,
-            "data": null,
-            "defaultContent": '<div class="progress" role="progressbar" aria-label="Animated progress" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar progress-bar-striped bg-info" style="width: {{ percentage }}%">{{ percentage }}%</div></div>'}]
         })
 
         $( '#batch-list tr td' ).on('click', '.editable', function(e) {

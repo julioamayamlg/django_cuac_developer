@@ -168,11 +168,15 @@ class BatchListAsJSON(LoginRequiredMixin, DatatableListView):
                 f"</a>")
 
     def object_wrapper(self, obj):
+        percentage = math.trunc((obj.hours_elapsed / obj.time) * 100)
         row = {
             'DT_RowId': obj.pk,
             'name': obj.name,
             'time': obj.time,
             'hours_elapsed': obj.hours_elapsed,
+            'progress': '<div class="progress" role="progressbar" aria-label="progress" aria-valuenow="'
+                        + str(percentage) + '" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar progress-bar-striped bg-info" style="width: '
+                        + str(percentage) +'%">'+ str(percentage) +'%</div></div>',
             'created': obj.created,
             'expiration': obj.expiration,
             'company_pk': obj.company.pk,
