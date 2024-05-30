@@ -48,6 +48,7 @@
         { data: 'name', title: 'Nombre', className: 'editable', name: 'name' },
         { data: 'time', title: 'Horas', className: 'editable', name: 'time' },
         { data: 'hours_elapsed', title: 'Horas agotadas', className: 'editable', name: 'hours_elapsed' },
+        { data: 'progress', title: 'Progreso', className: 'editable'},
         { data: 'created', title: 'Creado', className: 'editable', name: 'created' },
         { data: 'expiration', title: 'Caducidad', className: 'editable', name: 'expiration' },
         { data: 'company', title: 'Cliente', className: 'company' },
@@ -70,6 +71,7 @@
                 { label: 'Cliente', name: 'company' },
                 { label: 'Estado', name: 'status' }
             ]
+
         })
 
         let table = $( '#batch-list' ).DataTable({
@@ -98,7 +100,11 @@
                   className: "btn btn-danger",
                   text: "<i class='bi bi-trash'></i> Borrar",
                   editor: editor}
-            ]
+            ],
+            "columnDefs": [ {
+            "targets": 3,
+            "data": null,
+            "defaultContent": '<div class="progress" role="progressbar" aria-label="Animated progress" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar progress-bar-striped bg-info" style="width: {{ percentage }}%">{{ percentage }}%</div></div>'}]
         })
 
         $( '#batch-list tr td' ).on('click', '.editable', function(e) {
