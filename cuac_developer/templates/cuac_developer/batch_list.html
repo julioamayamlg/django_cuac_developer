@@ -68,8 +68,12 @@
                 { label: 'Horas agotadas', name: 'hours_elapsed' },
                 { label: 'Creado', name: 'created' },
                 { label: 'Caducidad', name: 'expiration' },
-                { label: 'Cliente', name: 'company' },
-                { label: 'Estado', name: 'status' }
+                { label: 'Cliente', name: 'company', type: 'select'},
+                { label: 'Estado', name: 'status', type: 'select',
+                 options: [
+                    { label: 'Facturado', value: 'billed' },
+                    { label: 'Cobrado', value: 'charged' }]
+                 }
             ]
 
         })
