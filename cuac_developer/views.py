@@ -1,3 +1,5 @@
+import math
+
 from django.views import generic
 from braces.views import LoginRequiredMixin, SuperuserRequiredMixin, PermissionRequiredMixin, JSONResponseMixin
 from cuac_core.mixins import DatatableListView, DatatableEditor
@@ -28,8 +30,9 @@ class BatchDetail(LoginRequiredMixin, generic.DetailView):
             'breadcrumb_list': [
                 {'label': 'Lotes',
                  'url': reverse_lazy('cuac_developer:batch-list')},
-                {'label': self.object.name}
-            ]})
+                {'label': self.object.name}],
+            'percentage' : math.trunc(self.object.time / self.object.hours_elapsed) * 100
+        })
         return context
 
 class BatchCreate(LoginRequiredMixin, generic.CreateView):
